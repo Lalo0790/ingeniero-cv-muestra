@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Datos para tu sitio · Ing. Manuel Maldonado</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14181f;--ink2:#1c222c;--gold:#c9a96a;--gold2:#e2cb98;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0}body{background:var(--ink);color:rgba(255,255,255,.85);font:300 16px/1.6 Inter,system-ui,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+.eb{color:var(--gold);letter-spacing:.3em;font-size:.72rem;text-transform:uppercase;font-weight:500}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500;color:#fff;line-height:1.15}
+h1{font-size:clamp(2.2rem,8vw,3.2rem);margin:12px 0}h2{font-size:1.7rem;margin:0 0 6px}
+.hint{color:rgba(255,255,255,.55);font-size:.9rem}
+fieldset{border:0;padding:40px 0 10px;border-bottom:1px solid var(--line)}
+.n{color:var(--gold);font-size:.72rem;letter-spacing:.25em}
+label{display:block;margin-top:20px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+input,textarea{width:100%;margin-top:6px;background:var(--ink2);border:1px solid var(--line);color:#fff;font:inherit;padding:13px 14px;border-radius:2px}
+input:focus,textarea:focus{outline:none;border-color:var(--gold)}textarea{min-height:90px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.card{border:1px solid var(--line);padding:6px 18px 18px;margin-top:18px;position:relative}
+.card .t{font-family:'Cormorant Garamond',serif;color:#fff;font-size:1.25rem;margin-top:12px}
+.rm{position:absolute;top:12px;right:12px;background:none;border:0;color:rgba(255,255,255,.5);cursor:pointer;font-size:.8rem}
+.btn{display:inline-block;margin-top:18px;padding:14px 22px;border:1px solid var(--gold);background:none;color:var(--gold2);font:500 .78rem Inter;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.btn.p{background:var(--gold);color:var(--ink);width:100%;padding:18px}.row{display:flex;gap:10px;flex-wrap:wrap}.row .btn{flex:1}
+.note{margin:30px 0;padding:18px;border-left:2px solid var(--gold);background:var(--ink2);font-size:.95rem}
+.saved{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:10px;text-align:center}
+#fb{display:none}footer{padding:30px 0 40px;color:rgba(255,255,255,.45);font-size:.8rem;text-align:center}footer b{color:var(--gold2);font-weight:500}
+@media(max-width:520px){.g2{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="w"><p class="eb">Tu sitio web</p><h1>¡Hola, Ing. Manuel! 👋</h1>
+<p class="hint">Llena lo que puedas, sin prisa: se guarda solo en este dispositivo. Lo que no tengas, déjalo en blanco. Al final se lo mandas a Eduardo por WhatsApp con un botón.</p></div></header>
+<form id="f" class="w" autocomplete="on">
+<fieldset><p class="n">01</p><h2>Datos generales</h2>
+ <label>Nombre como quieres que aparezca<input name="nombre" value="Ing. Manuel Maldonado"></label>
+ <div class="g2"><label>Ciudad y estado<input name="ciudad" placeholder="Ej. Querétaro, Qro."></label>
+ <label>Cédula profesional<input name="cedula" inputmode="numeric"></label></div>
+ <label>Disponibilidad<input name="disponibilidad" placeholder="Ej. Proyectos en todo México"></label></fieldset>
+<fieldset><p class="n">02</p><h2>Cifras clave</h2><p class="hint">Aproximadas está bien.</p>
+ <div class="g2"><label>Años de experiencia<input name="anios" inputmode="numeric"></label>
+ <label>m² construidos (aprox.)<input name="m2" inputmode="numeric"></label>
+ <label>Obras entregadas<input name="obras" inputmode="numeric"></label>
+ <label>Otra cifra (opcional)<input name="otraCifra" placeholder="Ej. 15 municipios atendidos"></label></div></fieldset>
+<fieldset><p class="n">03</p><h2>Sobre ti</h2>
+ <label>Frase principal (1–2 líneas)<textarea name="tagline" placeholder="Ej. Más de 25 años construyendo obras seguras, a tiempo y dentro de presupuesto."></textarea></label>
+ <label>Sobre mí<textarea name="sobre" style="min-height:140px" placeholder="Tu trayectoria, en qué te especializas y cómo trabajas."></textarea></label></fieldset>
+<fieldset><p class="n">04</p><h2>Experiencia</h2><p class="hint">Hasta 4 puestos, del más reciente al más antiguo.</p>
+ <div id="jobs"></div><button type="button" class="btn" id="addJob">+ Agregar puesto</button></fieldset>
+<fieldset><p class="n">05</p><h2>Proyectos destacados</h2><p class="hint">Hasta 6 obras.</p>
+ <div id="projs"></div><button type="button" class="btn" id="addProj">+ Agregar proyecto</button></fieldset>
+<fieldset><p class="n">06</p><h2>Especialidades y software</h2>
+ <label>Especialidades (una por línea)<textarea name="especialidades" placeholder="Supervisión de obra&#10;Presupuestos y precios unitarios&#10;Estructuras de concreto"></textarea></label>
+ <label>Software que usas<input name="software" placeholder="AutoCAD, Opus, Neodata, MS Project…"></label></fieldset>
+<fieldset><p class="n">07</p><h2>Formación</h2>
+ <label>Estudios (carrera, universidad y año; uno por línea)<textarea name="estudios" placeholder="Ingeniería Civil — UNAM — 1998"></textarea></label>
+ <label>Certificaciones y cursos (uno por línea)<textarea name="certificaciones" placeholder="DRO — 2010&#10;PMP — 2018"></textarea></label></fieldset>
+<fieldset><p class="n">08</p><h2>Contacto</h2><p class="hint">Así te encontrarán desde tu sitio.</p>
+ <div class="g2"><label>Correo<input name="email" type="email"></label><label>Teléfono<input name="telefono" type="tel"></label>
+ <label>WhatsApp<input name="whatsapp" type="tel" placeholder="10 dígitos"></label><label>LinkedIn (link)<input name="linkedin" placeholder="linkedin.com/in/…"></label></div></fieldset>
+<fieldset><p class="n">09</p><h2>Notas</h2><label>¿Algo más que quieras que aparezca o cambie?<textarea name="notas"></textarea></label></fieldset>
+<div class="note">📸 Tus fotos (obras y foto personal) y tu CV en PDF mándalos directo por WhatsApp a Eduardo después de enviar.</div>
+<button class="btn p" type="submit">Enviar por WhatsApp</button>
+<div id="fb"><p class="hint" style="margin-top:16px">Si WhatsApp no abrió con todo el texto, usa una de estas opciones y pégalo en el chat con Eduardo:</p>
+<div class="row"><button type="button" class="btn" id="copy">Copiar datos</button><button type="button" class="btn" id="dl">Descargar .txt</button></div></div>
+<p class="saved" id="sv">Tu avance se guarda automáticamente.</p>
+</form>
+<footer><b>Eduardo García Soluciones</b></footer>
+<template id="tJob"><div class="card" data-k="job"><button type="button" class="rm">Quitar ✕</button><p class="t">Puesto</p>
+ <div class="g2"><label>Puesto<input data-n="puesto" placeholder="Ej. Director de obra"></label><label>Empresa<input data-n="empresa"></label>
+ <label>Desde (año)<input data-n="desde" inputmode="numeric"></label><label>Hasta (año o "actual")<input data-n="hasta"></label></div>
+ <label>Qué hacías (1–2 líneas)<textarea data-n="desc"></textarea></label></div></template>
+<template id="tProj"><div class="card" data-k="proj"><button type="button" class="rm">Quitar ✕</button><p class="t">Proyecto</p>
+ <label>Nombre de la obra<input data-n="nombre"></label>
+ <div class="g2"><label>Ciudad<input data-n="ciudad"></label><label>Año<input data-n="anio" inputmode="numeric"></label>
+ <label>m² / metros<input data-n="m2"></label><label>Tipo<input data-n="tipo" placeholder="Ej. Edificio, puente, nave"></label></div>
+ <label>Descripción breve<textarea data-n="desc"></textarea></label></div></template>
+<script>
+const K='mm-datos',f=document.getElementById('f'),$=id=>document.getElementById(id);
+function add(kind,v={}){const box=$(kind==='job'?'jobs':'projs'),max=kind==='job'?4:6;if(box.children.length>=max)return;
+ const n=$(kind==='job'?'tJob':'tProj').content.firstElementChild.cloneNode(true);
+ n.querySelectorAll('[data-n]').forEach(i=>i.value=v[i.dataset.n]||'');n.querySelector('.rm').onclick=()=>{n.remove();upd();save()};box.append(n);upd()}
+function upd(){$('addJob').style.display=$('jobs').children.length>=4?'none':'';$('addProj').style.display=$('projs').children.length>=6?'none':'';
+ document.querySelectorAll('#jobs .t').forEach((t,i)=>t.textContent='Puesto '+(i+1));document.querySelectorAll('#projs .t').forEach((t,i)=>t.textContent='Proyecto '+(i+1))}
+const cards=id=>[...$(id).children].map(c=>Object.fromEntries([...c.querySelectorAll('[data-n]')].map(i=>[i.dataset.n,i.value.trim()])));
+function data(){const d={};f.querySelectorAll('[name]').forEach(i=>d[i.name]=i.value.trim());d.jobs=cards('jobs');d.projs=cards('projs');return d}
+function save(){localStorage.setItem(K,JSON.stringify(data()));$('sv').textContent='Guardado ✓ '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}
+const s=JSON.parse(localStorage.getItem(K)||'null');
+if(s){f.querySelectorAll('[name]').forEach(i=>{if(s[i.name]!=null)i.value=s[i.name]});(s.jobs||[]).forEach(v=>add('job',v));(s.projs||[]).forEach(v=>add('proj',v))}
+if(!$('jobs').children.length)add('job');if(!$('projs').children.length)add('proj');
+f.addEventListener('input',save);$('addJob').onclick=()=>{add('job');save()};$('addProj').onclick=()=>{add('proj');save()};
+function txt(){const d=data(),L=(k,v)=>v?`• ${k}: ${v}\n`:'',out=[];
+ out.push(`*DATOS PARA MI SITIO WEB*\n${d.nombre}\n`);
+ out.push(`*Generales*\n`+L('Ciudad',d.ciudad)+L('Cédula',d.cedula)+L('Disponibilidad',d.disponibilidad));
+ out.push(`*Cifras*\n`+L('Años de experiencia',d.anios)+L('m² construidos',d.m2)+L('Obras entregadas',d.obras)+L('Otra cifra',d.otraCifra));
+ out.push(`*Frase principal*\n${d.tagline||'—'}\n\n*Sobre mí*\n${d.sobre||'—'}\n`);
+ out.push(`*Experiencia*\n`+d.jobs.filter(j=>Object.values(j).some(Boolean)).map((j,i)=>`${i+1}. ${j.puesto} — ${j.empresa} (${j.desde}–${j.hasta})\n   ${j.desc}`).join('\n')+'\n');
+ out.push(`*Proyectos*\n`+d.projs.filter(j=>Object.values(j).some(Boolean)).map((p,i)=>`${i+1}. ${p.nombre} — ${p.tipo}\n   ${p.ciudad} · ${p.anio} · ${p.m2}\n   ${p.desc}`).join('\n')+'\n');
+ out.push(`*Especialidades*\n${d.especialidades||'—'}\n\n*Software*\n${d.software||'—'}\n`);
+ out.push(`*Estudios*\n${d.estudios||'—'}\n\n*Certificaciones*\n${d.certificaciones||'—'}\n`);
+ out.push(`*Contacto*\n`+L('Correo',d.email)+L('Teléfono',d.telefono)+L('WhatsApp',d.whatsapp)+L('LinkedIn',d.linkedin));
+ if(d.notas)out.push(`*Notas*\n${d.notas}\n`);return out.join('\n')}
+f.onsubmit=e=>{e.preventDefault();save();const t=txt(),u='https://wa.me/525521128404?text='+encodeURIComponent(t);
+ $('fb').style.display='block';
+ if(u.length>6000){alert('Tu información es larga para mandarla directo. Toca "Copiar datos" (o descarga el .txt) y pégalo en el chat con Eduardo.');window.open('https://wa.me/525521128404?text='+encodeURIComponent('Hola Eduardo, te mando mis datos para el sitio 👇'),'_blank')}
+ else window.open(u,'_blank')};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(txt());$('copy').textContent='¡Copiado! ✓'}catch(e){const a=document.createElement('textarea');a.value=txt();document.body.append(a);a.select();document.execCommand('copy');a.remove();$('copy').textContent='¡Copiado! ✓'}};
+$('dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt()],{type:'text/plain'}));a.download='datos-manuel-maldonado.txt';a.click()};
+</script></body></html>
